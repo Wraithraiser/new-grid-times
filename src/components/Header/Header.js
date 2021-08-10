@@ -28,24 +28,21 @@ const Header = () => {
           </ActionGroup>
         </Row>
       </SuperHeader>
-      <MainHeaderMobile>
-        <Logo />
-      </MainHeaderMobile>
-      <MainHeaderDesktop>
-        <ActionGroup>
+      <MainHeader>
+        <DesktopActionGroup>
           <button>
             <Search size={24} />
           </button>
           <button>
             <Menu size={24} />
           </button>
-        </ActionGroup>
+        </DesktopActionGroup>
         <Logo />
         <SubscribeWrapper>
           <Button>Subscribe</Button>
-          <Link href="/">Already a subscriber?</Link>
+          <SubLink href="/">Already a subscriber?</SubLink>
         </SubscribeWrapper>
-      </MainHeaderDesktop>
+      </MainHeader>
     </header>
   );
 };
@@ -78,40 +75,56 @@ const ActionGroup = styled.div`
   }
 `;
 
-const MainHeaderMobile = styled(MaxWidthWrapper)`
+const DesktopActionGroup = styled(ActionGroup)`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
+`;
+
+const SubscribeWrapper = styled.div`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: revert;
+    position: relative;
+    justify-self: end;
+  }
+`;
+
+const SubLink = styled.a`
+  position: absolute;
+  width: 100%;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-gray-900);
+  font-style: italic;
+  text-decoration: underline;
+`;
+
+const MainHeader = styled(MaxWidthWrapper)`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
 
-  @media ${QUERIES.laptopAndUp} {
-    display: none;
+  @media ${QUERIES.tabletAndUp} {
+    margin-top: 48px;
+    margin-bottom: 72px;
   }
-`;
-
-const MainHeaderDesktop = styled(MaxWidthWrapper)`
-  display: none;
 
   @media ${QUERIES.laptopAndUp} {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    justify-content: revert;
+    justify-items: start;
     margin-top: 16px;
-    margin-bottom: 48px;
+    margin-bottom: 72px;
   }
-`;
-
-const SubscribeWrapper = styled.div`
-  align-self: flex-end;
-  text-align: center;
-`;
-
-const Link = styled.a`
-  font-size: 0.875rem;
-  font-style: italic;
-  text-decoration-line: underline;
-  color: var(--color-gray-900);
 `;
 
 export default Header;
