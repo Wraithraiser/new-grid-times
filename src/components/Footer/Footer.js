@@ -1,9 +1,10 @@
 import React from "react";
 import { Twitter, Facebook } from "react-feather";
 import styled from "styled-components/macro";
-import { QUERIES } from "../../constants";
-import MaxWidthWrapper from "../MaxWidthWrapper";
 
+import { QUERIES } from "../../constants";
+
+import MaxWidthWrapper from "../MaxWidthWrapper";
 import VisuallyHidden from "../VisuallyHidden";
 
 const Footer = () => {
@@ -143,7 +144,7 @@ const TopRow = styled.div`
   padding: 24px 0;
 
   @media ${QUERIES.tabletAndUp} {
-    flex-direction: revert;
+    flex-direction: row;
     justify-content: center;
     gap: 48px;
   }
@@ -164,10 +165,6 @@ const Social = styled.div`
   path {
     stroke-width: 1.5px;
   }
-
-  @media ${QUERIES.tabletAndUp} {
-    gap: 16px;
-  }
 `;
 
 const TopNavList = styled.ul`
@@ -184,14 +181,9 @@ const MainNavArea = styled.div`
 
   @media ${QUERIES.tabletAndUp} {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    flex-direction: revert;
     text-align: left;
-  }
-
-  @media ${QUERIES.laptopAndUp} {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    justify-content: space-evenly;
   }
 `;
 
